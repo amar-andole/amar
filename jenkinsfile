@@ -33,5 +33,12 @@ pipeline {
         }
         }
     }
+    stage ('deploy') {
+          steps {
+            sh '''
+            sleep 3
+            '''
+          }
+    }
 }
 }
