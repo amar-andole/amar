@@ -3,13 +3,6 @@ pipeline {
     stages {
         stage ('CREDS') {
             steps {
-             //This is accessing credentials with username and password
-             withCredentials([usernamePassword(credentialsId: 'test_up', usernamevariable: 'USERNAME', passwordVariable : 'PASS')]) {
-                echo "$USERNAME $PASS"
-                sh '''
-                echo "$USERNAME $PASS"
-                '''
-             }
              //This is accessing credentila of type secret text
              withCredentials([string(credentialsId: 'secret_text', variable: 'SECRET_TEXT')]) {
                 echo "$SECRET_TEXT"
