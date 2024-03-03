@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    stages {
+        stage ('build') {
+            steps {
+                sh '''
+                sleep 5
+                '''
+            }
+        }
+        stage ('test multiple') {
+        parallel {
+            stage('test1') {
+               steps {
+                 sh '''
+                sleep 5
+                '''
+            }
+        }
+        stage ('test2') {
+            steps {
+                sh '''
+                sleep 3
+                '''
+            }
+        }
+        stage ('test3') {
+            steps {
+                sh '''
+                sleep 5
+                '''
+            }
+        }
+        }
+    }
+    stage ('deploy') {
+          steps {
+            sh '''
+            sleep 3
+            '''
+          }
+    }
+}
+}

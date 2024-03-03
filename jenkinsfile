@@ -1,44 +1,37 @@
 pipeline {
     agent any
     stages {
-        stage ('build') {
+        stage ('CREDS') {
             steps {
+             //This is accessing credentials with username and password
+             withCredentials([usernamePassword(credentialsId: 'test_up', usernamevariable: 'USERNAME', passwordVariable : 'PASS')]) {
+                echo "$USERNAME $PASS"
                 sh '''
-                sleep 5
+                echo "$USERNAME $PASS"
                 '''
-            }
-        }
-        stage ('test multiple') {
-        parallel {
-            stage('test1') {
-               steps {
-                 sh '''
-                sleep 5
-                '''
-            }
-        }
-        stage ('test2') {
-            steps {
+             }
+             //This is accessing credentila of type secret text
+             withCredentials([string(credentialsId: 'secret_text', variable: 'SECRET_TEXT')]) {
+                echo "$SECRET_TEXT"
                 sh '''
-                sleep 3
+                echo "$SECRET_TEXT"
                 '''
-            }
-        }
-        stage ('test3') {
-            steps {
+             }
+             //This is accessing credentials of type secret file
+             withCredentials([file(credentialsId: 'SECRET_FILE', variable: 'FILE_PATH')]) {
+                echo "$FILE_PATH"
                 sh '''
-                sleep 5
+                cat "$FILE_PATH"
                 '''
+             }
+             //This is accessing credentials with username and privatekey
+              withCredentials([sshUserPrivatekey(credentialsId : 'ssh-pem', usernameVariable : 'USER', keypairVariable : 'SSH_KEY')]) {
+                 echo "$USER $SSH_KEY"
+                sh '''
+                echo "$USER $SSH_KEY"
+                '''
+              }
             }
-        }
         }
     }
-    stage ('deploy') {
-          steps {
-            sh '''
-            sleep 3
-            '''
-          }
-    }
-}
 }
