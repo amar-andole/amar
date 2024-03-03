@@ -14,6 +14,7 @@ pipeline {
                 ls -lrt
                 mvn clean install
                 ls -lrt
+                '''
             }
         }
     }
