@@ -1,0 +1,27 @@
+pipline {
+    agent 'none'
+    stages {
+        stage('build') {
+           agent {
+            label 'slave1'
+           } 
+            steps {
+                sh '''
+                 ls -lrt
+                 pwd
+                 tree
+                 sleep 5
+                 '''
+            }
+        }
+        stage {
+            agent {
+            label 'slave2'
+            }
+            sh '''
+            pwd
+            sleep 5
+            '''
+        }
+    }
+}
