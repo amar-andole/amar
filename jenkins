@@ -5,7 +5,7 @@ pipeline {
             steps {
                 checkout([$class: 'GitSCM', 
                 branches: [[name: '*/master']],
-                userRemoteConfigs: [[url: 'https://github.com/jabedhasan21/java-hello-world-with-maven.git']]])
+                userRemoteConfigs: [[url: 'https://github.com/goodrain/java-maven-demo.git']]])
             }
         }
         stage ('build') {
