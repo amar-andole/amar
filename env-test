@@ -1,0 +1,22 @@
+pipeline {
+    agent any 
+    environment {
+        TEST = "123"
+        TEST1 = "456"
+    }
+    stages {
+          stage ('build') {
+            steps {
+                sh '''
+                echo "$TEST $TEST1"
+                '''
+            }
+          }
+          stage ('test') {
+            steps {
+                echo "${env.TEST}"
+                echo "${env.TEST1}"
+            }
+          }
+    }
+}

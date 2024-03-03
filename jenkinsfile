@@ -1,22 +1,21 @@
 pipeline {
-    agent any 
-    environment {
-        TEST = "123"
-        TEST1 = "456"
-    }
+    agent any
+    parameters { string(name: 'PERSON', defaultValue: 'input-name', description: 'this is string parameter') }
     stages {
-          stage ('build') {
+        stage('build') {
             steps {
                 sh '''
-                echo "$TEST $TEST1"
+                echo "${params.PERSON}
+                sleep 5
                 '''
             }
-          }
-          stage ('test') {
+        }
+        stage ('test') {
             steps {
-                echo "${env.TEST}"
-                echo "${env.TEST1}"
+                sh ''' 
+                echo '${params.PESRON}"
+                '''
             }
-          }
+        }
     }
 }
