@@ -1,27 +1,18 @@
 pipeline {
-    agent any
+    agent any 
+    parameters {
+        booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'toggle this value') 
+         booleanParam(name: 'BUILD', defaultValue: true, description: 'toggle this value') 
+          booleanParam(name: 'TEST', defaultValue: true, description: 'toggle this value') 
+           booleanParam(name: 'DEPLOY', defaultValue: true, description: 'toggle this value') 
+    }
     stages {
-        stage ('build') {
-            steps {
-                sh '''
-                sleep 5
-                '''
+        stage ('CHECKOUT') {
+            when {
+                expression {
+                    params.CHECKOUT == true
+                }
             }
-        }
-        stage('test') {
-             steps {
-                    sh '''
-                    sleep 10
-                    exit 1
-                    '''
-             }
-        }
-        stage('deploy') {
-              steps {
-              sh '''
-              sleep 10
-              '''
-           }
-        }
+        } 
     }
 }
