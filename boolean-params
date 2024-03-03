@@ -1,0 +1,60 @@
+pipeline {
+    agent any 
+    parameters {
+        booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'toggle this value') 
+         booleanParam(name: 'BUILD', defaultValue: true, description: 'toggle this value') 
+          booleanParam(name: 'TEST', defaultValue: true, description: 'toggle this value') 
+           booleanParam(name: 'DEPLOY', defaultValue: true, description: 'toggle this value') 
+    }
+    stages {
+        stage ('CHECKOUT') {
+            when {
+                expression {
+                    params.CHECKOUT == true
+                }
+            }
+            steps {
+                sh '''
+                sleep 5
+                '''
+            }
+        }
+        stage ('BUILD') {
+            when {
+                expression {
+                    params.BUILD == true
+                }
+            }
+            steps {
+                sh '''
+                ls
+                sleep 5
+                '''
+            }
+        } 
+        stage ('TEST') {
+            when {
+                expression {
+                    params.TEST == true
+                }
+            }
+            steps {
+                sh '''
+                sleep 5
+                '''
+            }
+        }
+        stage ('DEPLOY') {
+            when {
+                expression {
+                    params.DEPLOY == true
+                }
+            }
+            steps {
+                sh '''
+                sleep 5
+                '''
+            }
+        }
+    }
+}
