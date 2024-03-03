@@ -9,10 +9,12 @@ pipeline {
             }
         }
         stage ('test') {
+            steps {
             sh '''
             ls -lrt
             sleep 10
             '''
+            }
         }
      }
 }
