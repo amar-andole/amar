@@ -10,10 +10,12 @@ pipeline {
         }
         stage('test') {
              steps {
+                catchError(buildResult : 'success', stageResult : 'failure') {
                     sh '''
                     sleep 10
                     exit 1
                     '''
+                }
              }
         }
         stage('deploy') {
