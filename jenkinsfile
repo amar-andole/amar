@@ -1,24 +1,22 @@
 pipeline {
-    agent any 
-    triggers{ 
-        cron('H/2 * * * *')
-         }
-         stages {
-            stage ('build') {
-                steps {
-                    sh '''
-                    echo "amar"
-                    sleep 5
-                    '''
-                }
-            }
-            stage ('test') {
-                steps {
-                    sh ''
-                    ls
-                    pwd
-                    '''
-                }
-            }
-         }
-}
+    agent any
+    triggers {
+        cron('* * * * *')
+    }
+    stages {
+        stage ('build') {
+             steps {
+                sh '''
+                sleep 5
+                '''
+             }
+        }
+        stage ('test') {
+             steps {
+                sh '''
+                sleep 5
+                '''
+             }
+        }
+    }
+    }
