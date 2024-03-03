@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    parameters { string(name: 'PERSON', defaultValue: 'input-name', description: 'this is string parameter') }
+    stages {
+        stage('build') {
+            steps {
+                echo "${params.PERSON}"
+                sleep 5
+            }
+        }
+        stage ('test') {
+            steps {
+                sh ''' 
+                echo "$PESRON"
+                '''
+            }
+        }
+    }
+}
