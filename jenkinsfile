@@ -9,6 +9,7 @@ pipeline {
                     sh '''
                     echo "amar"
                     sleep 5
+                    '''
                 }
             }
             stage ('test') {
@@ -16,6 +17,7 @@ pipeline {
                     sh ''
                     ls
                     pwd
+                    '''
                 }
             }
          }
