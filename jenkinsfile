@@ -13,10 +13,12 @@ pipeline {
             }
         }
         stage ('test') {
+            steps {
               sh '''
               sleep 5
               ls
               '''
+            }
         }
     }
     }
