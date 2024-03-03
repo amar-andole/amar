@@ -1,24 +1,20 @@
 pipeline {
-    agent any
-    triggers {
-        pollSCM('* * * * *')
-    }
+    agent any 
     stages {
+        stage('checkout') {
+            steps {
+                checkout([$class: 'GitSCM', 
+                branches: [[name: '*/main']],
+                userRemoteConfigs: [[url: 'https://github.com/jabedhasan21/java-hello-world-with-maven.git']]])
+            }
+        }
         stage ('build') {
             steps {
                 sh '''
-                sleep 5
-                ls
-                '''
-            }
-        }
-        stage ('test') {
-            steps {
-              sh '''
-              sleep 5
-              ls
-              '''
+                ls -lrt
+                mvn clean install
+                ls -lrt
             }
         }
     }
-    }
+}
