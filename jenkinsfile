@@ -1,4 +1,4 @@
-pipline {
+pipeline {
     agent 'none'
     stages {
         stage('build') {
@@ -18,10 +18,12 @@ pipline {
             agent {
             label 'slave2'
             }
+            steps {
             sh '''
             pwd
             sleep 5
             '''
+        }
         }
     }
 }
