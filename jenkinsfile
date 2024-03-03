@@ -4,7 +4,7 @@ pipeline {
         stage('checkout') {
             steps {
                 checkout([$class: 'GitSCM', 
-                branches: [[name: '*/main']],
+                branches: [[name: '*/master']],
                 userRemoteConfigs: [[url: 'https://github.com/jabedhasan21/java-hello-world-with-maven.git']]])
             }
         }
