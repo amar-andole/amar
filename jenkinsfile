@@ -8,7 +8,7 @@ pipeline {
                 '''
             }
         }
-        stages ('test multiple') 
+        stages ('test multiple') {
         parallel {
             stage('test1') {
                steps {
@@ -30,6 +30,7 @@ pipeline {
                 sleep 5
                 '''
             }
+        }
         }
     }
 }
