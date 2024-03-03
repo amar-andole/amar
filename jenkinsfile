@@ -18,6 +18,43 @@ pipeline {
                 sleep 5
                 '''
             }
+        }
+        stage ('BUILD') {
+            when {
+                expression {
+                    params.BUILD == true
+                }
+            }
+            steps {
+                sh '''
+                ls
+                sleep 5
+                '''
+            }
         } 
+        stage ('TEST') {
+            when {
+                expression {
+                    params.TEST == true
+                }
+            }
+            steps {
+                sh '''
+                sleep 5
+                '''
+            }
+        }
+        stage ('DEPLOY') {
+            when {
+                expression {
+                    params.DEPLOY == true
+                }
+            }
+            steps {
+                sh '''
+                sleep 5
+                '''
+            }
+        }
     }
 }
