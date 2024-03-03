@@ -1,6 +1,6 @@
 pipeline {
      agent {
-        label built-in
+        label Built-in Node
      }
      stages {
         stage ('build') {
