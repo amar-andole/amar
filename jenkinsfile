@@ -1,29 +1,22 @@
 pipeline {
-    agent 'none'
+    agent any 
+    environment {
+        TEST = "123"
+        TEST1 = "456"
+    }
     stages {
-        stage('build') {
-           agent {
-            label 'slave1'
-           } 
+          stage ('build') {
             steps {
                 sh '''
-                 ls -lrt
-                 pwd
-                 tree
-                 sleep 5
-                 '''
+                echo "$TEST $TEST1"
+                '''
             }
-        }
-        stage('test') {
-            agent {
-            label 'slave2'
-            }
+          }
+          stage ('test') {
             steps {
-            sh '''
-            pwd
-            sleep 5
-            '''
-        }
-        }
+                echo "${env.TEST}"
+                echo "${env.TEST1}"
+            }
+          }
     }
 }
